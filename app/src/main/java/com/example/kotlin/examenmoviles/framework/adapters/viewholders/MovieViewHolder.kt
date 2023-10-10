@@ -23,6 +23,8 @@ class MovieViewHolder (private val binding: ItemMovieBinding) : RecyclerView.Vie
         Glide.with(context).load(urlImage)
             .apply(requestOptions)
             .into(binding.IVPhoto)
+        binding.TVScore.text = item.vote_average.toString()
+        binding.TVDesc.text = item.overview
         binding.TVName.text = item.title
     }
 

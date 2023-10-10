@@ -5,22 +5,65 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center"
-        android:id="@+id/IVPhoto"
-        />
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="Nombre"
-        android:id="@+id/TVName"
-        />
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="0.25"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="left"
+            android:id="@+id/IVPhoto"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Nombre"
+                    android:id="@+id/TVName"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="7.8"
+                    android:id="@+id/TVScore"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp"
+                android:text="LoremIpsum"
+                android:id="@+id/TVDesc"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
