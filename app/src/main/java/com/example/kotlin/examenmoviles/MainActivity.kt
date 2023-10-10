@@ -2,8 +2,12 @@ package com.example.kotlin.examenmoviles
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.examenmoviles.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity:Activity() {
@@ -14,7 +18,7 @@ class MainActivity:Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()
-        setUpRecyclerView(testData())
+        getMovieList()
     }
 
     private fun initializeBinding() {
@@ -25,11 +29,22 @@ class MainActivity:Activity() {
     private fun testData():ArrayList<MovieBase>{
         var result = ArrayList<MovieBase>()
 
-        result.add(MovieBase("The Super Mario Bros. Movie",""))
-        result.add(MovieBase("Super Mario Bros.",""))
-        result.add(MovieBase("Super Mario Brothers: Great Mission to Rescue Princess Peach",""))
+        result.add(MovieBase("The Super Mario Bros. Movie",1))
+        result.add(MovieBase("Super Mario Bros.",2))
+        result.add(MovieBase("Super Mario Brothers: Great Mission to Rescue Princess Peach",3))
 
         return result
+    }
+
+    private fun getMovieList(){
+        CoroutineScope(Dispatchers.IO).launch{
+            val movieRepository = MovieRepository()
+            val result:TheatreObject? = movieRepository.getMovieList(Constants.key)
+            Log.d("Salida", result?.results.toString())
+            CoroutineScope(Dispatchers.Main).launch {
+                setUpRecyclerView(result?.results!!)
+            }
+        }
     }
 
     private fun setUpRecyclerView(dataForList:ArrayList<MovieBase>){
@@ -42,4 +57,6 @@ class MainActivity:Activity() {
         adapter.MovieAdapter(dataForList)
         binding.RVMovie.adapter = adapter
     }
+
+
 }

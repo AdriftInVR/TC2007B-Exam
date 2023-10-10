@@ -6,7 +6,7 @@ class MovieRepository() {
     private lateinit var api:MovieAPIService
 
     suspend fun getMovieList(api_key:String):TheatreObject?{
-        //todo: Inicializar variable api
+        api = NetworkModuleDI()
         return try{
             api.getMovieList(api_key)
         }catch (e:java.lang.Exception){
@@ -16,7 +16,7 @@ class MovieRepository() {
     }
 
     suspend fun getMovieInfo(movie_id:Int, api_key:String): Movie?{
-        //todo: Inicializar variable api
+        api = NetworkModuleDI()
         return try{
             api.getMovieInfo(movie_id, api_key)
         }catch (e:java.lang.Exception){
