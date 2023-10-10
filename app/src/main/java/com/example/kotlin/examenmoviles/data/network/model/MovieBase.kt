@@ -1,4 +1,4 @@
-package com.example.kotlin.examenmoviles
+package com.example.kotlin.examenmoviles.data.network.model
 
 import com.google.gson.annotations.SerializedName
 

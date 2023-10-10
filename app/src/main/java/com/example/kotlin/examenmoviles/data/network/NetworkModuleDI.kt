@@ -1,6 +1,6 @@
-package com.example.kotlin.examenmoviles
+package com.example.kotlin.examenmoviles.data.network
 
-import android.provider.SyncStateContract
+import com.example.kotlin.examenmoviles.util.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object NetworkModuleDI {
     private val gsonFactory: GsonConverterFactory = GsonConverterFactory.create()
     private val okHttpClient: OkHttpClient = OkHttpClient()
-    operator fun invoke(): MovieAPIService{
+    operator fun invoke(): MovieAPIService {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)

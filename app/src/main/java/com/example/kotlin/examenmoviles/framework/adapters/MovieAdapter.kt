@@ -1,9 +1,11 @@
-package com.example.kotlin.examenmoviles
+package com.example.kotlin.examenmoviles.framework.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.examenmoviles.data.network.model.MovieBase
+import com.example.kotlin.examenmoviles.framework.adapters.viewholders.MovieViewHolder
 import com.example.kotlin.examenmoviles.databinding.ItemMovieBinding
 
 class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {

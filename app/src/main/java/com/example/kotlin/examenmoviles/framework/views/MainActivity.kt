@@ -1,24 +1,27 @@
-package com.example.kotlin.examenmoviles
+package com.example.kotlin.examenmoviles.framework.views
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlin.examenmoviles.framework.adapters.MovieAdapter
 import com.example.kotlin.examenmoviles.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.kotlin.examenmoviles.data.network.model.MovieBase
+import com.example.kotlin.examenmoviles.framework.viewmodel.MainViewModel
 
 
-class MainActivity:Activity() {
+class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val adapter : MovieAdapter = MovieAdapter()
     private lateinit var data:ArrayList<MovieBase>
+
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()
-        getMovieList()
+        initializeObservers()
+        viewModel.getMovieList()
     }
 
     private fun initializeBinding() {
@@ -26,24 +29,9 @@ class MainActivity:Activity() {
         setContentView(binding.root)
     }
 
-    private fun testData():ArrayList<MovieBase>{
-        var result = ArrayList<MovieBase>()
-
-        result.add(MovieBase("The Super Mario Bros. Movie",1, ""))
-        result.add(MovieBase("Super Mario Bros.",2, ""))
-        result.add(MovieBase("Super Mario Brothers: Great Mission to Rescue Princess Peach",3, ""))
-
-        return result
-    }
-
-    private fun getMovieList(){
-        CoroutineScope(Dispatchers.IO).launch{
-            val movieRepository = MovieRepository()
-            val result:TheatreObject? = movieRepository.getMovieList(Constants.key)
-            Log.d("Salida", result?.results.toString())
-            CoroutineScope(Dispatchers.Main).launch {
-                setUpRecyclerView(result?.results!!)
-            }
+    private fun initializeObservers(){
+        viewModel.theatreObjectLiveData.observe(this){ theatreObject ->
+            setUpRecyclerView(theatreObject.results)
         }
     }
 
@@ -57,6 +45,5 @@ class MainActivity:Activity() {
         adapter.MovieAdapter(this, dataForList)
         binding.RVMovie.adapter = adapter
     }
-
 
 }

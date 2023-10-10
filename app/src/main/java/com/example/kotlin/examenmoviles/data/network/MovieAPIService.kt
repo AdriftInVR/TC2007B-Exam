@@ -1,6 +1,7 @@
-package com.example.kotlin.examenmoviles
+package com.example.kotlin.examenmoviles.data.network
 
-import com.example.kotlin.examenmoviles.movies.Movie
+import com.example.kotlin.examenmoviles.data.network.model.TheatreObject
+import com.example.kotlin.examenmoviles.data.network.model.movies.Movie
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

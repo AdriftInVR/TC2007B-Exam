@@ -1,4 +1,4 @@
-package com.example.kotlin.examenmoviles.movies
+package com.example.kotlin.examenmoviles.data.network.model.movies
 
 data class ProductionCountry(
     val iso_3166_1: String,
