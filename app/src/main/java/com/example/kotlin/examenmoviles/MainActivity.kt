@@ -29,9 +29,9 @@ class MainActivity:Activity() {
     private fun testData():ArrayList<MovieBase>{
         var result = ArrayList<MovieBase>()
 
-        result.add(MovieBase("The Super Mario Bros. Movie",1))
-        result.add(MovieBase("Super Mario Bros.",2))
-        result.add(MovieBase("Super Mario Brothers: Great Mission to Rescue Princess Peach",3))
+        result.add(MovieBase("The Super Mario Bros. Movie",1, ""))
+        result.add(MovieBase("Super Mario Bros.",2, ""))
+        result.add(MovieBase("Super Mario Brothers: Great Mission to Rescue Princess Peach",3, ""))
 
         return result
     }
@@ -54,7 +54,7 @@ class MainActivity:Activity() {
             LinearLayoutManager.VERTICAL,
             false)
         binding.RVMovie.layoutManager = linearLayoutManager
-        adapter.MovieAdapter(dataForList)
+        adapter.MovieAdapter(this, dataForList)
         binding.RVMovie.adapter = adapter
     }
 
